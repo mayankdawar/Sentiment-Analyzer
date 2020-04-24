@@ -56,6 +56,6 @@ def gettingOutput(resultFile):
         resultFile.write("\n")
 
         
- gettingOutput(resultFile)
+gettingOutput(resultFile)
 resultFile.close()
 TwitterFile.close()
