@@ -1,5 +1,6 @@
 import sys
 sys.setExecutionLimit(500000)
+
 punctuation_char = ["'", '"', ",", ".", "!", ":", ";", '#', '@']
 # lists of words to use
 positive_words = []
@@ -44,11 +45,17 @@ def get_neg(Str):
 
 TwitterFile = open("project_twitter_data.csv","r")
 resultFile = open("resulting_data.csv","w")
-resultFile.write("Number of Retweets, Number of Replies, Positive Score, Negative Score, Net Score")
-resultFile.write("\n")
-linesTwitter = TwitterFile.readlines()
-noHeader = linesTwitter.pop(0)
-for lines in linesTwitter:
-    lst = lines.strip().split(',')
-    resultFile.write("{}, {}, {}, {}, {}".format(lst[1], lst[2], get_pos(lst[0]), get_neg(lst[0]), (get_pos(lst[0])-get_neg(lst[0]))))    
+def gettingOutput(resultFile):
+    resultFile.write("Number of Retweets, Number of Replies, Positive Score, Negative Score, Net Score")
     resultFile.write("\n")
+    linesTwitter = TwitterFile.readlines()
+    noHeader = linesTwitter.pop(0)
+    for lines in linesTwitter:
+        lst = lines.strip().split(',')
+        resultFile.write("{}, {}, {}, {}, {}".format(lst[1], lst[2], get_pos(lst[0]), get_neg(lst[0]), (get_pos(lst[0])-get_neg(lst[0]))))    
+        resultFile.write("\n")
+
+        
+ gettingOutput(resultFile)
+resultFile.close()
+TwitterFile.close()
